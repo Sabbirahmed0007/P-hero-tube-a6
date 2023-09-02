@@ -119,12 +119,12 @@ const handleVideosshow=(videoscontents, status)=>{
 
 }
  
-// document.getElementById('sort-button').addEventListener('click', function(handleVideosshow){
-//     videoscontents.sort((a , b)=>{a.others.views - b.others.views
-//     });
-//     handleVideosshow(videoscontents);
+document.getElementById('sort-button').addEventListener('click', function(handleVideosshow){
+    videoscontents.sort((a , b)=>{a.others.views - b.others.views
+    });
+    handleVideosshow(videoscontents);
     
-// })
+})
 
 const toHourMinSec=(giventime)=>{
     giventime=Number(giventime)
