@@ -4,8 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P-Hero Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        .font-inter{
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 <body>
+    <header class="max-w-full mx-auto">
+        <nav class="max-w-full flex justify-evenly  md:justify-between md:px-16 items-center my-4 mx-auto  py-3 ">
+            <img src="./images/Logo.png" alt="Logo" class="w-36 md:w-40">
+            <button id="sort-button" class="btn font-bold text-md : "disabled>Sort by view</button>
+            <button id="blog-btn-container" class="btn text-sm bg-red-600  hover:bg-red-700 font-bold text-white">Blog </button>
+            
+        </nav>
+        <div class="w-11/12 border-gray-400 border-b-2 mx-auto"></div>
+    </header>
+    <main>
+
+        <div class="mx-6 grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 font-inter">
+            
+                <div class="card  bg-base-100 shadow-2xl my-5">
+                    <details class="p-10 ">
+                        <summary class="text-lg font-semibold scroll-auto">Discuss the scope of var, let, and const</summary>
+                        <p class="mt-3">
+                            <span class="font-bold">var :</span> <mark>"var"</mark> keyword is used to declare variables. The keyword 'var' has some different characteristics and behavior which differentiate
+                            itself from other keywords like <mark>"let"</mark> and <mark>"const"</mark>. 
+                        </p>
+                        <p>
+                            Well,  <mark>"var"</mark> is called Function scope. Variables declared with <mark>"var"</mark> are Function-scoped.They are only accessible within the function in which they are defined.
+                        </p>
+                        <p>
+                            <mark>"var"</mark> is also called no-block -scope.It is accessible from outside of any function.
+                        </p>
+                        <p class="mb-2">
+                            Variables declared with  <mark>"var"</mark> outside of any function become global variables and can be accessed throughout the entire script.
+                            variables are declared with <mark>"var"</mark> can be redeclared and reassigned with the same scope without errors.
+                        </p>
+                        <hr>
+                        <p class="my-2">
+                            <span class="font-bold">let : </span> The <mark>"let"</mark> keyword is used for variable declaration in JavaScript, and it has some important characteristics and behaviors. <mark>"let"</mark>  is block-scoped  variable keyword. This makes specially useful for preventing variable leakage and creating variables that are only accessible within a specific block of code. <br>
+                            variables declared with <mark>"let"</mark> cannot be redeclared in the same block or scope. While you cannot redeclare that variables in the same scope, you can still update their values. <br>
+                            variables declared with <mark>"let"</mark> are  Function-scoped, which means they're only accessible within the function in which they're defined. <mark>"let"</mark> commonly used in modern javascript development because it provides blockscope elements, hosting related issues and encourages better variables scoping practice.
+                        </p>
+                        <hr>
+                        <p class="my-2">
+                            <span class="font-bold">const :</span> The <mark>"const"</mark> keyword in javascript is used for variable declaration, butit has some unique characteristics and behaviors compared.to <mark>"let"</mark> and <mark>"var"</mark>.
+                            <br>Variables declared with <mark>"const"</mark> are used to store values that should not be reassigned after their initial assignment. In other words, they're constant. <br>
+                            Like that, <mark>"const"</mark> is  block-scope. it is confined to the block within Curly brackets. Variable declared with <mark>"const"</mark> are not hoisted to the top of their containing block, similar to let you cannot access them before their declaration.
+                            <br>With <mark>"const"</mark> neither you can redeclare a variable nor  reassign a variable. <mark>"const"</mark> is often used for values that are meant to remain constant throughout the program's execution, such as mathematical constants or configuration settings. It is also used when you want to ensure that a variable is not accidentally reassigned.However, it is important to remember that for objects and arrays, declare with <mark>"const"</mark> you can still modify their contents.
+                        </p>
+                    </details>
+                </div>
+                <div class="card  bg-base-100 shadow-2xl my-5">
+                    <details class="p-10">
+                        <summary  class="text-lg font-semibold">Tell us the use cases of null and undefined</summary>
+                        <p class="my-3">
+                            <mark>null</mark> and <mark>"undefined"</mark> are two distinct values in javascript and they serve different uses cases,
+                            <br><span class="font-bold">Null : </span>Now.Is often used to indicate the international absence of any object value or a placeholder for a value that is not yet known or available.It is used to reset the value of a variable to.no value or an empty state.
+                        </p>
+                        <hr>
+                        <p >
+                            
+                            <span class="font-bold">undefined</span> Usually undefined Keywords declared implicit default value. A variable is declared but not assignable. It automatically gets the value. <mark>"undefined"</mark> can be useful in cases where you want to differentiate between a variable that has not been assigned a value and the variable that intentionally holds a value of <mark>"null"</mark> or another value.
+                            <br> Well, you try to access an object preparing that doesn't exist, It returns undefined.
+                            <p class="my-3">
+                                In summary now is typically used to represent the intentional absence of a value, or to reset a variable while undefined is often the default value for uninitialized variables function parameters without values or non-existent object properties under.when and how to use these values is important for writing robust and clear javascript code.
+
+                            </p>
+                        </p>
+
+                    </details>
+                </div>
+                <div class="card  bg-base-100 shadow-2xl my-5">
+                    <details class="p-10">
+                        <summary class="text-lg font-semibold">What do you mean by REST API?</summary>
+
+                        <p>An API, or application programming interface, is a set of rules that define how applications or devices can connect to and communicate with each other. A REST API is an API that conforms to the design principles of the REST, or representational state transfer architectural style.</p>
+                    </details>
+                </div>
+            
+            </div>
+            
+        
+            
+    
+            
+        </div>
+    </main>
     
 </body>
 </html>

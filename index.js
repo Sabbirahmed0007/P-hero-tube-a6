@@ -12,13 +12,28 @@ const  handleCategory =async()=>{
     categroryData.forEach(category => {
 
         const div= document.createElement('div');
-        div.innerHTML=`
-        <button onclick="handleLoadVideos('${category.category_id}')" class="tab btn text-md mx-3 focus:bg-red-500 focus:text-white ">${category.category}</button> 
+        if(category.category_id !== null){
 
+            div.innerHTML=`
+    
+            <button onclick="handleLoadVideos('${category.category_id}')" class="tab btn text-md mx-3 focus:bg-red-500 focus:text-white ">${category.category}</button> 
+    
+    
+            `;
 
-        `;
-
+        }
+        else{
+            div.innerHTML=`
+            <div>
+                <img src="./images/Icon.png" alt=""/>
+                <p>Oops!! Sorry, There is no content here</p>
+            </div>
+            
+            `;
+        }
         tabcontainer.appendChild(div);
+
+
         
     });
 
@@ -47,9 +62,9 @@ const handleVideosshow=(videoscontents)=>{
         console.log(videos);
         const div= document.createElement('div');
         
-        const inseconds= videos.others.posted_date;
+        const inseconds= videos.others?.posted_date;
         console.log(inseconds);
-        const displaypostedDate=toHourMinSec(inseconds);
+        const displaypostedDate= inseconds? toHourMinSec(inseconds): " ";
         console.log(displaypostedDate);
         div.innerHTML=`
         <div class="card h-[500px] w-11/12 bg-base-100 shadow-xl mx-5  my-5">
@@ -63,10 +78,10 @@ const handleVideosshow=(videoscontents)=>{
                     <div class="">
                         <h2 class="card-title text-left text-md font-black font-inter">${videos.title}</h2>
                         <div class="flex justify-center items-center">
-                            <h3 class="my-3">${videos.authors[0].profile_name}  </h3>
+                            <h3 class="my-3 font-semibold">${videos.authors[0].profile_name}  </h3>
                             <p>${videos.authors[0].verified ? `<img src="./images/bluetick.png" class="w-5 h-5  ml-2">` : ''}</p>
                         </div>
-                        <p>${videos.others.views} </p>
+                        <p class="font-small">${videos.others.views} Views</p>
                     </div>
                 </div>
                 
@@ -99,14 +114,14 @@ const toHourMinSec=(giventime)=>{
 handleCategory()
 handleLoadVideos("1001")
 
-document.getElementById('blog-container').addEventListener('click', function(){
-    const videoscontainer=document.getElementById('videos-container');
+document.getElementById('blog-btn-container').addEventListener('click', function(){
     
-    const blogcontent= window.location.href='blog.html';
-    videoscontainer.innerHTML= blogcontent;
+    window.location.href = 'blog.html';
     
 
 })
+
+
 
 
 
