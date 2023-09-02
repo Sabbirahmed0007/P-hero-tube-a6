@@ -1,6 +1,7 @@
 
 
 
+
 const  handleCategory =async()=>{
 
     const res= await fetch(` https://openapi.programming-hero.com/api/videos/categories`);
@@ -47,56 +48,83 @@ const handleLoadVideos = async(id)=>{
     const res= await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data= await res.json();
     const videoscontents=data.data;
+    const status= data.status;
+    console.log(status);
     console.log(videoscontents);
 
-    handleVideosshow(videoscontents);
+    handleVideosshow(videoscontents, status);
     
     
 }
 
 
-const handleVideosshow=(videoscontents)=>{
+const handleVideosshow=(videoscontents, status)=>{
     const videoscontainer=document.getElementById('videos-container');
     videoscontainer.innerHTML='';
-    videoscontents.forEach((videos)=>{
-        console.log(videos);
-        const div= document.createElement('div');
-        
-        const inseconds= videos.others?.posted_date;
-        console.log(inseconds);
-        const displaypostedDate= inseconds? toHourMinSec(inseconds): " ";
-        console.log(displaypostedDate);
-        div.innerHTML=`
-        <div class="card h-[500px] w-11/12 bg-base-100 shadow-xl mx-5  my-5">
-            <figure class="relative">
-                <img src="${videos.thumbnail}" alt="videos" class="w-full h-[300px] lg:mx-10 rounded-md" />
-                <p class="absolute font-bold bottom-2 right-3 bg-gradient-to-b from-white to-white text-transparent bg-clip-text">${displaypostedDate}</p>
-            </figure>
-            <div class="card-body ">
-                <div class="flex gap-4">
-                    <img src="${videos.authors[0]?.profile_picture}" class="w-10 h-10 rounded-full" alt=""/>
-                    <div class="">
-                        <h2 class="card-title text-left text-md font-black font-inter">${videos.title}</h2>
-                        <div class="flex justify-center items-center">
-                            <h3 class="my-3 font-semibold">${videos.authors[0].profile_name}  </h3>
-                            <p>${videos.authors[0].verified ? `<img src="./images/bluetick.png" class="w-5 h-5  ml-2">` : ''}</p>
-                        </div>
-                        <p class="font-small">${videos.others.views} Views</p>
-                    </div>
-                </div>
-                
-                
-                </div>
-                </div>
-                
-                `;
-                videoscontainer.appendChild(div);
-                
+    if(status=== true){
 
-    })
+        videoscontents.forEach((videos)=>{
+    
+            
+            console.log(videos);
+            const div= document.createElement('div');
+            
+            const inseconds= videos.others?.posted_date;
+            console.log(inseconds);
+            const displaypostedDate= inseconds? toHourMinSec(inseconds): " ";
+            console.log(displaypostedDate);
+            div.innerHTML=`
+            <div class="card h-[500px] w-11/12 bg-base-100 shadow-xl mx-5  my-5">
+                <figure class="relative">
+                    <img src="${videos.thumbnail}" alt="videos" class="w-full h-[300px] lg:mx-10 rounded-md" />
+                    <p class="absolute font-bold bottom-2 right-3 bg-gradient-to-b from-white to-white text-transparent bg-clip-text">${displaypostedDate}</p>
+                </figure>
+                <div class="card-body ">
+                    <div class="flex gap-4">
+                        <img src="${videos.authors[0]?.profile_picture}" class="w-10 h-10 rounded-full" alt=""/>
+                        <div class="">
+                            <h2 class="card-title text-left text-md font-black font-inter">${videos.title}</h2>
+                            <div class="flex justify-center items-center">
+                                <h3 class="my-3 font-semibold">${videos.authors[0].profile_name}  </h3>
+                                <p>${videos.authors[0].verified ? `<img src="./images/bluetick.png" class="w-5 h-5  ml-2">` : ''}</p>
+                            </div>
+                            <p class="font-small">${videos.others.views} Views</p>
+                        </div>
+                    </div>
+                    
+                    
+                    </div>
+                    </div>
+                    
+                    `;
+                    videoscontainer.appendChild(div);
+                    
+    
+        })
+    }
+    else{
+        const div= document.createElement('div');
+        div.classList.add="w-full mx-auto";
+        div.innerHTML=`
+        <div class="w-11/12 mx-auto flex flex-col justify-center items-center">
+            <img  src="./images/Icon.png"/>
+            <h3 class='text-center mt-3 font-medium text-lg'>Oops!! Sorry,<br> There is no content here</h3>
+        </div>
+
+        `;
+        videoscontainer.appendChild(div);
+    }
+    
 
 
 }
+ 
+// document.getElementById('sort-button').addEventListener('click', function(handleVideosshow){
+//     videoscontents.sort((a , b)=>{a.others.views - b.others.views
+//     });
+//     handleVideosshow(videoscontents);
+    
+// })
 
 const toHourMinSec=(giventime)=>{
     giventime=Number(giventime)
