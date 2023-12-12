@@ -1,4 +1,8 @@
 let videoscontents = [];
+
+const noContent= document.getElementById('no-content');
+
+
 const handleCategory = async () => {
   const res = await fetch(
     ` https://openapi.programming-hero.com/api/videos/categories`
@@ -40,15 +44,18 @@ const handleVideosshow = (videoscontents, status) => {
   const videoscontainer = document.getElementById("videos-container");
   videoscontainer.innerHTML = "";
   if (status === true) {
+    noContent.classList.add('hidden');
+
     videoscontents.forEach((videos) => {
       //   console.log(videos);
       const div = document.createElement("div");
 
       const inseconds = videos.others?.posted_date;
       //   console.log(inseconds);
+    
       const displaypostedDate = inseconds ? toHourMinSec(inseconds) : " ";
       //   console.log(displaypostedDate);
-    //   div.classList.add="w-screen-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center justify-center gap-10 md:gap-4 lg:gap-2 my-20 mx-auto"
+      //   div.classList.add="w-screen-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center justify-center gap-10 md:gap-4 lg:gap-2 my-20 mx-auto"
       div.innerHTML = `
             
                 <div class="card h-[500px] w-11/12 bg-base-100 shadow-xl mx-5  my-5">
@@ -92,16 +99,9 @@ const handleVideosshow = (videoscontents, status) => {
       videoscontainer.appendChild(div);
     });
   } else {
-    const div = document.createElement("div");
-    div.classList.add = " grid grid-cols-1 w-full mx-auto";
-    div.innerHTML = `
-        <div class="w-11/12 mx-auto flex flex-col justify-center items-center">
-            <img  src="./images/Icon.png"/>
-            <h3 class='text-center mt-3 font-medium text-lg'>Oops!! Sorry,<br> There is no content here</h3>
-        </div>
 
-        `;
-    videoscontainer.appendChild(div);
+    noContent.classList.remove('hidden');
+        
   }
 };
 
@@ -131,8 +131,18 @@ handleLoadVideos("1001");
 
 /// Blog portion
 
-document
-  .getElementById("blog-btn-container")
-  .addEventListener("click", function () {
+document.getElementById("blog-btn-container").addEventListener("click", function () {
     window.location.href = "blog.html";
   });
+
+
+
+
+
+
+
+
+
+
+
+  
